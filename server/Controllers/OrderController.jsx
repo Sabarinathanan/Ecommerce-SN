@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const productModel = require('../Models/ProductModel')
 
 // import model
 const orderModel = require('../Models/OrderModel');
@@ -21,11 +22,19 @@ router.post('/orders', async (req, res, next) => {
         
         const order = await orderModel.create({ cartItems, amount, status });
 
+        //updating stock
+        cartItems.forEach(async(item) => {
+            const product = await productModel.findById(item.product._id);
+            product.stock=product.stock - item.qty;
+            await product.save();
+        });
+
         res.json({
             success: true,
             order
         });
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(404).json({
             success: false,
             message: err.message
