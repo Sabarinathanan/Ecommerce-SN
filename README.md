@@ -24,16 +24,17 @@ This project is a full-featured eCommerce website built using the MERN stack (Mo
    git clone https://github.com/yourusername/ecommerce-website.git
    cd ecommerce-website
 
-2.cd client
-npm install
-cd ../server
-npm install
+2. ```bash
+   cd client
+   npm install
 
-3.
-**Backend**
-cd server
-npm start
+   cd ../server
+   npm install
 
-**Frontend**
-cd client
-npm start
+3.  **Backend:**
+   cd server
+   npm start
+   
+4.  **Frontend**:
+   cd client
+   npm start
